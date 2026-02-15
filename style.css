@@ -13,6 +13,13 @@ header {
   color: white;
 }
 
+footer {
+  background-color: #076329;
+  padding: 20px 10px;
+  font-size: 25px;
+  color: grey;
+}
+
 section {
   padding: 60px 20px;
 }
