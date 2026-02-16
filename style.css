@@ -24,28 +24,6 @@ section {
   padding: 60px 20px;
 }
 
-img {
-  width: 300px;
-  max-width: 90%;
-  margin: 20px;
-  border-radius: 8px;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-img:hover {
-  transform: scale(1.05);
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
-}
-
-.quote {
-  background: white;
-  margin: 20px auto;
-  padding: 20px;
-  max-width: 600px;
-  border-radius: 12px;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
-}
-
 nav {
   background: #111;
   padding: 18px;
@@ -70,6 +48,19 @@ nav a:hover {
 
 a.active {
   color: #888;
+}
+
+img {
+  width: 300px;
+  max-width: 90%;
+  margin: 20px;
+  border-radius: 8px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+img:hover {
+  transform: scale(1.05);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
 }
 
 .hero-image {
@@ -103,6 +94,15 @@ a.active {
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
 }
 
+.quote {
+  background: white;
+  margin: 20px auto;
+  padding: 20px;
+  max-width: 600px;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
 .donate-button {
   display: inline-block;
   background: #28a745;
@@ -120,4 +120,3 @@ a.active {
   transform: scale(1.05);
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
 }
-
