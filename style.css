@@ -73,3 +73,10 @@ a.active {
   display: block;
   margin: 40px auto;
 }
+
+.gear-icon {
+  width: 20%;
+  max-width: 300px;
+  display: block;
+  margin: 10px auto;
+}
