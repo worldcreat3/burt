@@ -66,3 +66,10 @@ nav a:hover {
 a.active {
   color: #888;
 }
+
+.hero-image {
+  width: 80%;
+  max-width: 1000px;
+  display: block;
+  margin: 40px auto;
+}
