@@ -51,6 +51,11 @@ nav {
   padding: 18px;
 }
 
+.nav-right {
+  display: flex;
+  align-items: center;
+}
+
 nav a {
   color: white;
   text-decoration: none;
@@ -75,8 +80,44 @@ a.active {
 }
 
 .gear-icon {
-  width: 20%;
-  max-width: 300px;
-  display: block;
-  margin: 10px auto;
+  width: 22px;
+  height: 22px;
+  vertical-align: middle;
 }
+
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 25px;
+  padding: 40px;
+}
+
+.gallery img {
+  width: 100%;
+  border-radius: 10px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.gallery img:hover {
+  transform: scale(1.05);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
+}
+
+.donate-button {
+  display: inline-block;
+  background: #28a745;
+  color: white;
+  padding: 18px 35px;
+  border-radius: 10px;
+  text-decoration: none;
+  font-size: 18px;
+  font-weight: bold;
+  margin-top: 25px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.donate-button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
