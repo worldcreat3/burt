@@ -1,20 +1,37 @@
+:root {
+  --bg-color: #17a8c2;
+  --text-color: #000;
+  --header-bg: #34c217;
+  --footer-bg: #076329;
+  --card-bg: #ffffff;
+}
+
 body {
   font-family: 'Brush Script MT', cursive;
   margin: 0;
   padding: 0;
-  background-color: #17a8c2;
+  background-color: var(--bg-color);
+  color: var(--text-color);
   text-align: center;
 }
 
+body.dark-mode {
+  --bg-color: #121212;
+  --text-color: #ffffff;
+  --header-bg: #1f1f1f;
+  --footer-bg: #1a1a1a;
+  --card-bg: #2a2a2a;
+}
+
 header {
-  background-color: #34c217;
+  background-color: var(--header-bg);
   padding: 40px 20px;
   font-size: 35px;
   color: white;
 }
 
 footer {
-  background-color: #076329;
+  background-color: var(--footer-bg);
   padding: 20px 10px;
   font-size: 25px;
   color: grey;
@@ -86,7 +103,6 @@ img:hover {
 .gallery img {
   width: 100%;
   border-radius: 10px;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .gallery img:hover {
@@ -95,7 +111,7 @@ img:hover {
 }
 
 .quote {
-  background: white;
+  background: var(--card-bg);
   margin: 20px auto;
   padding: 20px;
   max-width: 600px;
