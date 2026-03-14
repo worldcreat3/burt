@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Practice Quiz</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@500;600&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+
+body{
+font-family:'DM Sans',sans-serif;
+background:#f6f3ee;
+margin:0;
+padding:40px 20px;
+color:#1b1b1b;
+}
+
+.page{
+max-width:650px;
+margin:auto;
+}
+
+h1{
+font-family:'Fraunces',serif;
+margin-bottom:6px;
+}
+
+p{
+color:#666;
+margin-bottom:30px;
+}
+
+.card{
+background:white;
+border:1px solid #e5e2db;
+border-radius:14px;
+padding:18px;
+margin-bottom:16px;
+}
+
+textarea,select{
+width:100%;
+padding:10px;
+border-radius:8px;
+border:1px solid #ddd;
+margin-top:6px;
+font-size:14px;
+}
+
+.row{
+display:flex;
+gap:10px;
+}
+
+button{
+cursor:pointer;
+border:none;
+border-radius:8px;
+padding:11px;
+font-size:15px;
+}
+
+.generate{
+width:100%;
+background:#2d5a3d;
+color:white;
+margin-top:10px;
+}
+
+.option{
+padding:10px;
+border:1px solid #ddd;
+border-radius:8px;
+margin-top:6px;
+cursor:pointer;
+}
+
+.option:hover{
+background:#f5f5f5;
+}
+
+.correct{
+background:#e6f4ea;
+border-color:#2d5a3d;
+}
+
+.wrong{
+background:#fdecec;
+border-color:#cc4444;
+}
+
+.score{
+background:#e6f4ea;
+padding:10px;
+border-radius:8px;
+margin-bottom:16px;
+display:flex;
+justify-content:space-between;
+}
+
+.explanation{
+margin-top:8px;
+font-size:13px;
+color:#555;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="page">
+
+<h1>AI Practice Quiz</h1>
+<p>Enter a topic and generate questions.</p>
+
+<div class="card">
+
+<label>Topic</label>
+<textarea id="topic" placeholder="Photosynthesis, Algebra, WW2..."></textarea>
+
+<div class="row">
+
+<div style="flex:1">
+<label>Questions</label>
+<select id="numQ">
+<option>3</option>
+<option selected>5</option>
+<option>8</option>
+<option>10</option>
+</select>
+</div>
+
+<div style="flex:1">
+<label>Difficulty</label>
+<select id="diff">
+<option>easy</option>
+<option selected>medium</option>
+<option>hard</option>
+</select>
+</div>
+
+</div>
+
+<button class="generate" onclick="generate()">Generate Questions</button>
+
+</div>
+
+<div id="quiz"></div>
+
+</div>
+
+<script>
+
+const API_KEY = "AIzaSyAFHCfm2s19sVWlfWvZ53bkgriwzQg4bJk"
+
+let questions=[]
+let answers={}
+let revealed={}
+
+async function generate(){
+
+const topic=document.getElementById("topic").value.trim()
+
+if(!topic){
+alert("Enter a topic")
+return
+}
+
+const numQ=document.getElementById("numQ").value
+const diff=document.getElementById("diff").value
+
+document.getElementById("quiz").innerHTML="Generating..."
+
+const prompt=`Create ${numQ} multiple-choice questions about ${topic}.
+Difficulty: ${diff}.
+Return ONLY a JSON array.
+Each object must contain:
+question:string
+options:array of 4 strings
+answer:index 0-3
+explanation:short sentence.`
+
+const res=await fetch(
+`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${API_KEY}`,
+{
+method:"POST",
+headers:{'Content-Type':'application/json'},
+body:JSON.stringify({
+contents:[{parts:[{text:prompt}]}]
+})
+})
+
+const data=await res.json()
+
+const text=data.candidates?.[0]?.content?.parts?.[0]?.text || ""
+
+const clean=text.replace(/```json|```/g,"").trim()
+
+questions=JSON.parse(clean)
+
+answers={}
+revealed={}
+
+render()
+
+}
+
+function render(){
+
+let correct=0
+let answered=Object.keys(revealed).length
+
+Object.keys(revealed).forEach(i=>{
+if(answers[i]==questions[i].answer) correct++
+})
+
+let html=""
+
+if(answered>0){
+html+=`<div class="score">
+<span>Score</span>
+<b>${correct}/${answered}</b>
+</div>`
+}
+
+questions.forEach((q,i)=>{
+
+html+=`<div class="card">
+<b>${q.question}</b>`
+
+q.options.forEach((opt,j)=>{
+
+let cls="option"
+
+if(revealed[i]){
+if(j===q.answer) cls+=" correct"
+else if(answers[i]===j) cls+=" wrong"
+}
+
+html+=`<div class="${cls}" onclick="pick(${i},${j})">${opt}</div>`
+
+})
+
+if(revealed[i]){
+html+=`<div class="explanation">${q.explanation}</div>`
+}else if(answers[i]!=undefined){
+html+=`<button onclick="reveal(${i})">Check Answer</button>`
+}
+
+html+=`</div>`
+
+})
+
+document.getElementById("quiz").innerHTML=html
+
+}
+
+function pick(q,o){
+
+if(revealed[q]) return
+
+answers[q]=o
+render()
+
+}
+
+function reveal(q){
+
+revealed[q]=true
+render()
+
+}
+
+</script>
+
+</body>
+</html>
