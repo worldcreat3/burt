@@ -4,13 +4,14 @@ let revealed = {}
 
 let generating = false
 let lastRequest = 0
-const REQUEST_DELAY = 3000 // 3 seconds between requests
+const REQUEST_DELAY = 3000
 
 async function generate(){
 
 if(generating) return
 
 const now = Date.now()
+
 if(now - lastRequest < REQUEST_DELAY){
 alert("Please wait a few seconds before generating again.")
 return
@@ -46,15 +47,13 @@ explanation:short sentence.`
 try{
 
 const res = await fetch(
-`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${API_KEY}`,
+"https://burtcoza.lkaisoleo.workers.dev",
 {
 method:"POST",
 headers:{
 "Content-Type":"application/json"
 },
-body:JSON.stringify({
-contents:[{parts:[{text:prompt}]}]
-})
+body:JSON.stringify({ prompt })
 }
 )
 
