@@ -63,10 +63,23 @@ throw new Error("API error: " + res.status)
 
 const data = await res.json()
 
-const text =
-data?.candidates?.[0]?.content?.parts?.[0]?.text || ""
+const text = data?.choices?.[0]?.message?.content || ""
 
-const clean = text.replace(/```json|```/g,"").trim()
+if(!text){
+throw new Error("Empty AI response")
+}
+
+const clean = text
+.replace(/```json/g,"")
+.replace(/```/g,"")
+.trim()
+
+try{
+questions = JSON.parse(clean)
+}catch(e){
+console.error("Bad AI output:", clean)
+throw new Error("AI did not return valid JSON")
+}
 
 questions = JSON.parse(clean)
 
