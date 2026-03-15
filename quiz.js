@@ -70,9 +70,9 @@ if(!res.ok){
 throw new Error("API error: " + res.status)
 }
 
-console.log("Full response:", data)
-
 const data = await res.json()
+
+console.log("Full response:", data)
 
 const text = data?.choices?.[0]?.message?.content || ""
 
