@@ -35,14 +35,23 @@ btn.disabled = true
 
 quiz.innerHTML = "Generating..."
 
-const prompt = `Create ${numQ} multiple-choice questions about ${topic}.
+const prompt = `
+Create ${numQ} multiple-choice questions about ${topic}.
 Difficulty: ${diff}.
-Return ONLY a JSON array.
-Each object must contain:
-question:string
-options:array of 4 strings
-answer:index 0-3
-explanation:short sentence.`
+
+Return ONLY valid JSON.
+No explanations, no markdown.
+
+Format:
+[
+{
+"question":"text",
+"options":["A","B","C","D"],
+"answer":0,
+"explanation":"short explanation"
+}
+]
+`
 
 try{
 
