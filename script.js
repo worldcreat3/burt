@@ -18,22 +18,16 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 const imageFolder = "images/gallery/";
-
-// manually list files in the folder
-const images = [
-  "img1.jpg",
-  "img2.png",
-  "img3.jpeg"
-];
+const imageCount = 13; // just change this number
 
 window.onload = () => {
   const gallery = document.querySelector(".gallery");
 
-  images.forEach(file => {
+  for (let i = 1; i <= imageCount; i++) {
     const img = document.createElement("img");
-    img.src = imageFolder + file;
+    img.src = `${imageFolder}img${i}.jpg`;
     img.classList.add("gallery-img");
 
     gallery.appendChild(img);
-  });
+  }
 };
