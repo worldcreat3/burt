@@ -17,17 +17,17 @@ document.addEventListener("DOMContentLoaded", function () {
 
 });
 
-const imageFolder = "images/gallery/";
-const imageCount = 13; // just change this number
+// const imageFolder = "images/gallery/";
+// const imageCount = 13; // just change this number
 
-window.onload = () => {
-  const gallery = document.querySelector(".gallery");
+// window.onload = () => {
+//   const gallery = document.querySelector(".gallery");
 
-  for (let i = 1; i <= imageCount; i++) {
-    const img = document.createElement("img");
-    img.src = `${imageFolder}img${i}.jpg`;
-    img.classList.add("gallery-img");
+//   for (let i = 1; i <= imageCount; i++) {
+//     const img = document.createElement("img");
+//     img.src = `${imageFolder}img${i}.jpg`;
+//     img.classList.add("gallery-img");
 
-    gallery.appendChild(img);
-  }
-};
+//     gallery.appendChild(img);
+//   }
+// };
