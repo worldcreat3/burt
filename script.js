@@ -1,3 +1,4 @@
+//theme
 document.addEventListener("DOMContentLoaded", function () {
 
   if (localStorage.getItem("theme") === "dark") {
@@ -15,3 +16,24 @@ document.addEventListener("DOMContentLoaded", function () {
   };
 
 });
+
+const imageFolder = "images/gallery/";
+
+// manually list files in the folder
+const images = [
+  "img1.jpg",
+  "img2.png",
+  "img3.jpeg"
+];
+
+window.onload = () => {
+  const gallery = document.querySelector(".gallery");
+
+  images.forEach(file => {
+    const img = document.createElement("img");
+    img.src = imageFolder + file;
+    img.classList.add("gallery-img");
+
+    gallery.appendChild(img);
+  });
+};

@@ -73,6 +73,21 @@
     <p>- Epstein, 2011</p>
   </div>
 
+  <button onclick="getQuote()">Breaking Bad quotes</button>
+  <div class="quote">
+    <p id="breaking-bad-quotes"><i>click to get cooking</i></p>
+  </div>
+
+<script>
+function getQuote() {
+  fetch("https://breaking-bad-quotes.herokuapp.com/v1/quotes")
+    .then(r => r.json())
+    .then(data => {
+      document.getElementById("breaking-bad-quotes").textContent = data[0].quote;
+    });
+}
+</script>
+
 </section>
 
 <footer>
