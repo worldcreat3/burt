@@ -16,18 +16,3 @@ document.addEventListener("DOMContentLoaded", function () {
   };
 
 });
-
-const imageFolder = "images/gallery/";
-const imageCount = 13; // change this to your total images
-
-window.onload = () => {
-  const gallery = document.querySelector(".gallery");
-
-  for (let i = 1; i <= imageCount; i++) {
-    const img = document.createElement("img");
-    img.src = `${imageFolder}img${i}.png`;
-    img.classList.add("gallery-img");
-
-    gallery.appendChild(img);
-  }
-};
