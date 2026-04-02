@@ -16,3 +16,17 @@ document.addEventListener("DOMContentLoaded", function () {
   };
 
 });
+
+function filterGallery() {
+  const search = document.getElementById("gallery-search").value.toLowerCase();
+  const items = document.querySelectorAll(".gallery-item");
+
+  items.forEach(item => {
+    const name = item.querySelector("img").alt.toLowerCase();
+    if (name.includes(search)) {
+      item.style.display = "";
+    } else {
+      item.style.display = "none";
+    }
+  });
+}
