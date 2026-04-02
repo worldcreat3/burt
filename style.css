@@ -1,9 +1,17 @@
 :root {
   --bg-color: #17a8c2;
-  --text-color: #000;
-  --header-bg: #34c217;
-  --footer-bg: #076329;
+  --text-color: #01001f;
+  --header-bg: #66b630;
+  --footer-bg: #0b4e1a;
   --card-bg: #ffffff;
+}
+
+body.dark-mode {
+  --bg-color: #121212;
+  --text-color: #ffffff;
+  --header-bg: #1f1f1f;
+  --footer-bg: #1a1a1a;
+  --card-bg: #2a2a2a;
 }
 
 body {
@@ -15,26 +23,18 @@ body {
   text-align: center;
 }
 
-body.dark-mode {
-  --bg-color: #121212;
-  --text-color: #ffffff;
-  --header-bg: #1f1f1f;
-  --footer-bg: #1a1a1a;
-  --card-bg: #2a2a2a;
-}
-
 header {
   background-color: var(--header-bg);
-  padding: 40px 20px;
-  font-size: 35px;
+  padding: 10px 5px;
+  font-size: 20px;
   color: white;
 }
 
 footer {
   background-color: var(--footer-bg);
   padding: 20px 10px;
-  font-size: 25px;
-  color: grey;
+  font-size: 20px;
+  color: rgb(4, 51, 25);
 }
 
 section {
@@ -42,13 +42,12 @@ section {
 }
 
 nav {
-  background: #111;
-  padding: 18px;
-}
-
-.nav-right {
+  background: #4eb1b8;
+  padding: 0 8px;
+  height: 50px;
   display: flex;
   align-items: center;
+  justify-content: center;
 }
 
 nav a {
@@ -56,15 +55,14 @@ nav a {
   text-decoration: none;
   margin: 0 20px;
   font-weight: bold;
+  font-size: 14px;
   transition: opacity 0.3s ease;
+  line-height: 1;
 }
 
-nav a:hover {
+nav a:hover, a.active {
   opacity: 0.7;
-}
-
-a.active {
-  color: #888;
+  color: #002900;
 }
 
 img {
@@ -75,7 +73,7 @@ img {
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-img:hover {
+img:hover, .donate-button:hover {
   transform: scale(1.05);
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
 }
@@ -87,30 +85,9 @@ img:hover {
   margin: 40px auto;
 }
 
-.gear-icon {
-  width: 22px;
-  height: 22px;
-  vertical-align: middle;
-}
-
-.gallery-item {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 8px;
-}
-
-.gallery-item a {
-  padding: 6px 14px;
-  background-color: #333;
-  color: white;
-  text-decoration: none;
-  border-radius: 4px;
-  font-size: 0.85rem;
-}
-
-.gallery-item a:hover {
-  background-color: #555;
+.icon-image {
+  width: 5%;
+  display: block;
 }
 
 .quote {
@@ -135,9 +112,24 @@ img:hover {
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
-.donate-button:hover {
-  transform: scale(1.05);
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+.gallery-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.gallery-item a {
+  padding: 6px 14px;
+  background-color: #333;
+  color: white;
+  text-decoration: none;
+  border-radius: 4px;
+  font-size: 0.85rem;
+}
+
+.gallery-item a:hover {
+  background-color: #555;
 }
 
 #gallery-search {

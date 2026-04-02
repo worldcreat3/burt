@@ -4,7 +4,7 @@
   <title>Quotes</title>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="icon" type="image/png" href="images/happy emoji.png">
+  <link rel="icon" type="image/png" href="images/studious lukas.png">
   <link rel="stylesheet" href="style.css">
   <script src="script.js"></script>
 </head>
@@ -24,7 +24,7 @@
 
   <div class="nav-right">
     <a href="settings.html">
-      <img src="images/gear.png" alt="Settings" class="gear-icon">
+      <img src="images/gear.png" alt="Settings" class="icon-image">
     </a>
   </div>
 </nav>
@@ -79,22 +79,6 @@
     <p><i>"It's the difference between a murderer and a person who steals a bagel"</i></p>
     <p>- Jeffry Epstein, 2011</p>
   </div>
-
-  <button onclick="getQuote()">Breaking Bad quotes</button>
-  <div class="quote">
-    <p id="breaking-bad-quotes"><i>click to get cooking</i></p>
-  </div>
-
-<script>
-function getQuote() {
-  fetch("https://breaking-bad-quotes.herokuapp.com/v1/quotes")
-    .then(r => r.json())
-    .then(data => {
-      document.getElementById("breaking-bad-quotes").textContent = data[0].quote;
-    });
-}
-</script>
-
 </section>
 
 <footer>
