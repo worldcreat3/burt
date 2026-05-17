@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Partitioning a Line Segment (Coordinates)</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      padding: 20px;
+    }
+    .question-box {
+      margin: 20px auto;
+      padding: 20px;
+      border: 1px solid #ccc;
+      width: 420px;
+      border-radius: 10px;
+    }
+    button {
+      margin: 5px;
+      padding: 10px;
+      width: 100%;
+      cursor: pointer;
+    }
+    .correct { background-color: #4CAF50; color: white; }
+    .wrong { background-color: #f44336; color: white; }
+  </style>
+</head>
+<body>
+
+<h1>Partitioning a Line Segment</h1>
+
+<div class="question-box">
+  <p id="question">Loading...</p>
+  <div id="answers"></div>
+</div>
+
+<p id="score">Score: 0</p>
+
+<script>
+let score = 0;
+let currentAnswer = "";
+
+function generateQuestion() {
+  // Random coordinates
+  let x1 = randInt(-10, 10);
+  let y1 = randInt(-10, 10);
+  let x2 = randInt(-10, 10);
+  let y2 = randInt(-10, 10);
+
+  // Ratio AP:PB = m:n
+  let m = randInt(1, 5);
+  let n = randInt(1, 5);
+
+  // Section formula
+  let px = ((n * x1 + m * x2) / (m + n)).toFixed(2);
+  let py = ((n * y1 + m * y2) / (m + n)).toFixed(2);
+
+  currentAnswer = `(${px}, ${py})`;
+
+  document.getElementById("question").innerText =
+    `The endpoints of AB are A(${x1}, ${y1}) and B(${x2}, ${y2}).\nPoint P is on AB such that AP:PB = ${m}:${n}. What are the coordinates of P?`;
+
+  let answersDiv = document.getElementById("answers");
+  answersDiv.innerHTML = "";
+
+  let options = [currentAnswer];
+
+  while (options.length < 4) {
+    let wx = ((n * x1 + randInt(1,5) * x2) / (m + n)).toFixed(2);
+    let wy = ((randInt(1,5) * y1 + m * y2) / (m + n)).toFixed(2);
+    let wrong = `(${wx}, ${wy})`;
+    if (!options.includes(wrong)) options.push(wrong);
+  }
+
+  options.sort(() => Math.random() - 0.5);
+
+  options.forEach(option => {
+    let btn = document.createElement("button");
+    btn.innerText = option;
+    btn.onclick = () => checkAnswer(btn, option);
+    answersDiv.appendChild(btn);
+  });
+}
+
+function checkAnswer(button, answer) {
+  if (answer === currentAnswer) {
+    button.classList.add("correct");
+    score++;
+  } else {
+    button.classList.add("wrong");
+  }
+
+  document.getElementById("score").innerText = "Score: " + score;
+
+  setTimeout(generateQuestion, 1200);
+}
+
+function randInt(min, max) {
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+generateQuestion();
+</script>
+
+</body>
+</html>
