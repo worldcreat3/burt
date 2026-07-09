@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Checkout | Burt</title>
+
+<link rel="stylesheet" href="/assets/css/style.css">
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<script defer src="/assets/js/script.js"></script>
+<script defer src="/assets/js/checkout.js"></script>
+
+</head>
+
+<body>
+
+<div id="navbar"></div>
+
+<section class="checkout-section">
+
+    <div class="checkout-box">
+
+        <div class="progress">
+
+            <div class="progress-bar" id="progressBar"></div>
+            
+
+            <div class="progress-steps">
+
+                <span class="active">1</span>
+                <span>2</span>
+                <span>3</span>
+
+            </div>
+
+        </div>
+
+        <form id="checkoutForm">
+
+            <!-- STEP 1 -->
+
+            <div class="step active">
+
+                <h2>Step 1 • Your Request</h2>
+
+                <label>Upload Image</label>
+                <input type="file" accept="image/*" required id="image">
+ 
+                <label>Prompt</label>
+                <textarea
+                    placeholder="Describe exactly what you want..."
+                    rows="6"
+                    required
+                    id="prompt"
+                ></textarea>
+
+                <button type="button" class="next">Next</button>
+
+            </div>
+
+            <!-- STEP 2 -->
+
+            <div class="step">
+
+                <h2>Step 2 • Delivery</h2>
+
+                <label>When do you need it?</label>
+                <input type="date" required id="deliveryDate">
+
+                <label>Delivery Method</label>
+
+                <select required id="deliveryMethod">
+                    <option value="Email">Email</option>
+                    <option value="Discord">Discord</option>
+                    <option value="Instagram">Instagram</option>
+                    <option value="Physical">Physical <small>(+fee)</small></option>
+                </select>
+
+                <label>Quantity <small>(if printed)</small></label>
+
+                <input
+                    type="number"
+                    min="0"
+                    max="20"
+                    value="0"
+                    required
+                    id="quantity"
+                >
+
+                <div class="buttons">
+
+                    <button type="button" class="back">
+                        Back
+                    </button>
+
+                    <button type="button" class="next">
+                        Next
+                    </button>
+
+                </div>
+
+            </div>
+
+            <!-- STEP 3 -->
+
+            <div class="step">
+
+                <h2>Step 3 • Purchase</h2>
+
+                <label>First Name</label>
+                <input type="text" required id="firstName">
+
+                <label>Last Name</label>
+                <input type="text" required id="lastName">
+
+                <label>Email</label>
+                <input type="email" required id="email">
+
+                <label>Promo Code</label>
+                <input type="text" id="promoCode">
+
+                <label class="check">
+                    <input type="checkbox" required>
+                    I agree to the Terms & Conditions.
+                </label>
+
+                <label class="check">
+                    <input type="checkbox" required>
+                    I give permission for this image to appear in the public gallery.
+                </label>
+
+                <label class="check">
+                    <input type="checkbox" required>
+                    I confirm I have permission if this is someone else's image.
+                </label>
+
+                <div class="buttons">
+
+                    <button type="button" class="back">
+                        Back
+                    </button>
+
+                    <button type="submit">
+                        Submit Request
+                    </button>
+
+                </div>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</section>
+
+<div id="footer"></div>
+
+</body>
+</html>
+
+</body>
+</html>

@@ -1,0 +1,31 @@
+[
+  {
+    "title": "Delivery",
+    "keywords": [
+      "delivery",
+      "deliver",
+      "shipping",
+      "arrive",
+      "when"
+    ],
+    "answer": "Digital orders are usually completed within 1–3 days."
+  },
+  {
+    "title": "Pricing",
+    "keywords": [
+      "price",
+      "cost",
+      "money"
+    ],
+    "answer": "Prices depend on the complexity of your request. Contact Burt for a quote."
+  },
+  {
+    "title": "Refunds",
+    "keywords": [
+      "refund",
+      "refunds",
+      "money back"
+    ],
+    "answer": "Refund requests are reviewed on a case-by-case basis."
+  }
+]
