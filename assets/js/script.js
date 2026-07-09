@@ -205,6 +205,16 @@ document.getElementById("send").onclick = async () => {
 
     const prompt = document.getElementById("prompt").value;
 
+    const messages = document.getElementById("messages");
+
+    messages.innerHTML += `
+        <div class="user-message">
+            ${prompt}
+        </div>
+    `;
+
+    document.getElementById("prompt").value = "";
+
     const res = await fetch(
         "https://burtcoza.lkaisoleo.workers.dev",
         {
@@ -218,5 +228,26 @@ document.getElementById("send").onclick = async () => {
 
     const data = await res.json();
 
-    // Append the user's message and the AI's reply to #messages
+    if (data.error) {
+
+        messages.innerHTML += `
+            <div class="bot-message">
+                Error: ${data.error}
+            </div>
+        `;
+
+        return;
+
+    }
+
+    const reply = data.choices[0].message.content;
+
+    messages.innerHTML += `
+        <div class="bot-message">
+            ${reply}
+        </div>
+    `;
+
+    messages.scrollTop = messages.scrollHeight;
+
 };
