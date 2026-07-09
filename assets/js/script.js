@@ -216,7 +216,9 @@ document.getElementById("send").onclick = async () => {
         }
     );
 
-    const data = await res.json();
+    const text = await res.text();
+
+console.log(text);
 
     // Append the user's message and the AI's reply to #messages
 };
