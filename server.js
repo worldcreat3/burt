@@ -14,8 +14,7 @@ const rooms = new Map();
 
 function generateRoomCode() {
     const characters = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789";
-
-    let code = "";
+    let code;
 
     do {
         code = "";
@@ -35,6 +34,8 @@ function send(socket, data) {
 }
 
 wss.on("connection", (socket) => {
+    console.log("PLAYER CONNECTED");
+
     socket.roomCode = null;
     socket.playerNumber = null;
 
@@ -60,6 +61,8 @@ wss.on("connection", (socket) => {
 
             socket.roomCode = code;
             socket.playerNumber = 1;
+
+            console.log("Room created:", code);
 
             send(socket, {
                 type: "room_created",
@@ -94,8 +97,17 @@ wss.on("connection", (socket) => {
 
             room.players.push(socket);
 
+            const host = room.players[0];
+
+            send(host, {
+                type: "player_joined",
+                player_number: 2
+            });
+
             socket.roomCode = code;
             socket.playerNumber = 2;
+
+            console.log("Player 2 joined:", code);
 
             send(socket, {
                 type: "room_joined",
@@ -135,6 +147,8 @@ wss.on("connection", (socket) => {
     });
 
     socket.on("close", () => {
+        console.log("PLAYER DISCONNECTED");
+
         const code = socket.roomCode;
 
         if (!code || !rooms.has(code)) {
@@ -160,5 +174,5 @@ wss.on("connection", (socket) => {
 });
 
 server.listen(PORT, "0.0.0.0", () => {
-    console.log(`Server running on port ${PORT}`);
+    console.log("Server running on port " + PORT);
 });
