@@ -1,1 +1,4 @@
-t
+User-agent: *
+Disallow:
+
+Sitemap: https://burt.co.za

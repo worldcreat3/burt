@@ -1,1 +1,1 @@
-burtcoza presented by Lukas & Leo
+burtcoza presented by Lukas
