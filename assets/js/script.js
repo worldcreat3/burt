@@ -142,7 +142,7 @@ document.querySelectorAll("nav a").forEach(link => {
 
 });
 
-//customer support
+// customer support
 
 const support = document.getElementById("support");
 const header = document.getElementById("support-header");
@@ -152,18 +152,15 @@ let offsetX = 0;
 let offsetY = 0;
 
 header.addEventListener("mousedown", e => {
-
     dragging = true;
 
     offsetX = e.clientX - support.offsetLeft;
     offsetY = e.clientY - support.offsetTop;
 
     header.style.cursor = "grabbing";
-
 });
 
 document.addEventListener("mousemove", e => {
-
     if (!dragging) return;
 
     support.style.left = (e.clientX - offsetX) + "px";
@@ -171,83 +168,113 @@ document.addEventListener("mousemove", e => {
 
     support.style.right = "auto";
     support.style.bottom = "auto";
-
 });
 
 document.addEventListener("mouseup", () => {
-
     dragging = false;
-
     header.style.cursor = "grab";
-
 });
 
 const open = document.getElementById("openSupport");
 const close = document.getElementById("closeSupport");
 
 open.onclick = () => {
-
     support.style.display = "block";
-
     open.style.display = "none";
-
 };
 
 close.onclick = () => {
-
     support.style.display = "none";
-
     open.style.display = "block";
-
 };
+
+function escapeHTML(text) {
+    const div = document.createElement("div");
+    div.textContent = text;
+    return div.innerHTML;
+}
 
 document.getElementById("send").onclick = async () => {
 
-    const prompt = document.getElementById("prompt").value;
-
+    const input = document.getElementById("prompt");
     const messages = document.getElementById("messages");
+
+    const prompt = input.value.trim();
+
+    if (!prompt) return;
 
     messages.innerHTML += `
         <div class="user-message">
-            ${prompt}
+            ${escapeHTML(prompt)}
         </div>
     `;
 
-    document.getElementById("prompt").value = "";
+    input.value = "";
 
-    const res = await fetch(
-        "https://burtcoza.lkaisoleo.workers.dev",
-        {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({ prompt })
+    try {
+
+        const res = await fetch(
+            "https://burtcoza.lkaisoleo.workers.dev",
+            {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    prompt: prompt
+                })
+            }
+        );
+
+        const data = await res.json();
+
+        if (!res.ok) {
+            throw new Error(
+                typeof data.error === "object"
+                    ? JSON.stringify(data.error)
+                    : data.error || "Server error"
+            );
         }
-    );
 
-    const data = await res.json();
+        if (data.error) {
 
-    if (data.error) {
+            const errorMessage =
+                typeof data.error === "object"
+                    ? data.error.message || JSON.stringify(data.error)
+                    : data.error;
+
+            messages.innerHTML += `
+                <div class="bot-message">
+                    Error: ${escapeHTML(String(errorMessage))}
+                </div>
+            `;
+
+            return;
+        }
+
+        const reply =
+            data.choices?.[0]?.message?.content;
+
+        if (!reply) {
+            throw new Error("The server returned no AI response.");
+        }
 
         messages.innerHTML += `
             <div class="bot-message">
-                Error: ${data.error}
+                ${escapeHTML(reply)}
             </div>
         `;
 
-        return;
+        messages.scrollTop = messages.scrollHeight;
 
+    } catch (error) {
+
+        messages.innerHTML += `
+            <div class="bot-message">
+                Error: ${escapeHTML(error.message)}
+            </div>
+        `;
+
+        messages.scrollTop = messages.scrollHeight;
     }
-
-    const reply = data.choices[0].message.content;
-
-    messages.innerHTML += `
-        <div class="bot-message">
-            ${reply}
-        </div>
-    `;
-
-    messages.scrollTop = messages.scrollHeight;
-
 };
