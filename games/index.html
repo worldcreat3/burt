@@ -1,66 +1,35 @@
-```html
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Games | Burt</title>
+    <style>
+        body {
+            margin: 0;
+            background: #000;
+            text-align: center;
+        }
 
-<title>Games | Burt</title>
+        a {
+            color: white;
+            font-size: 20px;
+            display: block;
+            padding: 10px;
+        }
 
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-HFWS4RGRGB"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-HFWS4RGRGB');
-</script>
-
-<link rel="stylesheet" href="/assets/css/style.css">
-<script defer src="/assets/js/script.js"></script>
+        iframe {
+            width: 95vw;
+            height: 90vh;
+            border: none;
+        }
+    </style>
 </head>
 
 <body>
+    <a href="/">Back To Home Page</a>
 
-<div id="navbar"></div>
-
-<section class="hero">
-    <div class="hero-text">
-        <h1>
-            Games
-        </h1>
-
-        <p>
-            Take a break and play some games.
-        </p>
-    </div>
-</section>
-
-<section class="categories">
-
-    <h2>Play</h2>
-
-    <div class="cards">
-
-        <div class="card">
-            <h3>Basket Random</h3>
-
-            <p>
-                Play a chaotic game of basketball.
-            </p>
-
-            <button onclick="location.href='/games/basket-random/'">
-                Play Game
-            </button>
-        </div>
-
-    </div>
-
-</section>
-
-<div id="footer"></div>
-
+    <iframe
+        src="https://745fb5c5-a9c6-42cd-8d83-412e29113a68.id.repl.co/basket-random/index.html"
+        allowfullscreen>
+    </iframe>
 </body>
 </html>
-```
