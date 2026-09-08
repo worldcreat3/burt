@@ -2,20 +2,44 @@
 <html>
 <head>
   <title>redirect</title>
-  <meta http-equiv="refresh" content="0; url=/home/">
   <meta name="description" content=""/>
-</head>
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-HFWS4RGRGB"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
 
-  gtag('config', 'G-HFWS4RGRGB');
-</script>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-HFWS4RGRGB"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-HFWS4RGRGB');
+  </script>
+</head>
+
 <body>
+
   <p>redirecting</p>
-  <img src="assets/images/gallery/he made a statement so studious lukas.png">
+
+  <script>
+    fetch("https://YOUR-WORKER.workers.dev")
+      .then(res => res.json())
+      .then(data => {
+
+        if (data.city?.toLowerCase() === "new york") {
+
+          //window.location.href = "/home/?newyork=true";
+
+        } else {
+
+          //window.location.href = "/home/";
+
+        }
+
+      })
+      .catch(() => {
+        // If the location check fails, continue normally
+        window.location.href = "/home/";
+      });
+  </script>
+
 </body>
 </html>
