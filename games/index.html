@@ -1,35 +1,55 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-HFWS4RGRGB"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-HFWS4RGRGB');
+    </script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Games | Burt</title>
-    <style>
-        body {
-            margin: 0;
-            background: #000;
-            text-align: center;
-        }
 
-        a {
-            color: white;
-            font-size: 20px;
-            display: block;
-            padding: 10px;
-        }
+    <link rel="stylesheet" href="/assets/css/style.css">
+    <script defer src="/assets/js/script.js"></script>
 
-        iframe {
-            width: 95vw;
-            height: 90vh;
-            border: none;
-        }
-    </style>
 </head>
 
 <body>
-    <a href="/">Back To Home Page</a>
+
+<div id="navbar"></div>
+
+<section class="hero">
+
+    <div class="hero-text">
+
+        <h1>Basket Random</h1>
+
+        <p>Play Basket Random.</p>
+
+    </div>
+
+</section>
+
+<div style="width: 100%; display: flex; justify-content: center; margin: 20px 0 50px;">
 
     <iframe
-        src="https://745fb5c5-a9c6-42cd-8d83-412e29113a68.id.repl.co/basket-random/index.html"
+        src="https://www.twoplayergames.org/gameframe/basket-random"
+        style="width: 95%; max-width: 1200px; height: 700px; border: none; border-radius: 12px;"
         allowfullscreen>
     </iframe>
+
+</div>
+
+<div id="footer"></div>
+
 </body>
 </html>
