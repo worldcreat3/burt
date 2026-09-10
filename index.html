@@ -13,18 +13,22 @@
 
     gtag('config', 'G-HFWS4RGRGB');
   </script>
+
+  <script>
+fetch("https://on-open-burtcoza.workers.dev")
+    .then(res => res.text())
+    .then(data => {
+        console.log("Worker response:", data);
+    })
+    .catch(error => {
+        console.error("Worker error:", error);
+    });
+</script>
 </head>
 
 <body>
 
   <p>redirecting</p>
-
-  <script>
-    <script>
-  fetch("https://on-open-burtcoza.workers.dev")
-    .catch(() => {});
-</script>
-  </script>
 
 </body>
 </html>
