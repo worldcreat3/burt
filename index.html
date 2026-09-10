@@ -20,25 +20,10 @@
   <p>redirecting</p>
 
   <script>
-    fetch("https://on-open-burtcoza.workers.dev")
-      .then(res => res.json())
-      .then(data => {
-
-        if (data.city?.toLowerCase() === "new york") {
-
-          //window.location.href = "/home/?newyork=true";
-
-        } else {
-
-          //window.location.href = "/home/";
-
-        }
-
-      })
-      .catch(() => {
-        // If the location check fails, continue normally
-        window.location.href = "/home/";
-      });
+    <script>
+  fetch("https://on-open-burtcoza.workers.dev")
+    .catch(() => {});
+</script>
   </script>
 
 </body>
